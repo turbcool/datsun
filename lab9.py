@@ -7,9 +7,9 @@ prefs = [
 ]
 
 prefs = [
-    [1,2,3],
-    [3,2,1],
-    [2,1,3]
+    [1, 2, 4, 3],
+    [3, 2, 1, 4],
+    [2, 1, 3, 4]
 ]
 
 n = len(prefs[0])
@@ -19,7 +19,7 @@ for i in range(0, n):
     temp = [0]*n
     for j in range(0, n):
         count = 0
-        for k in range(0, n):
+        for k in range(0, len(prefs)):
             if prefs[k].index(i + 1) < prefs[k].index(j + 1):
                 count = count + 1
         temp[j] = count
