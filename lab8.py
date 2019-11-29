@@ -9,7 +9,7 @@ for i, p in enumerate(prNum):
 
 prComb = list(itertools.combinations(prNum, 2))
 cols = len(prComb) * 2
-# сгенерируем оценки:
+#1. Сгенерируем оценки:
 marks = [[0] * cols]*e
 for i, e in enumerate(marks):
     # итерация по парам:
@@ -21,6 +21,7 @@ for i, e in enumerate(marks):
         tempE[j + 1] = round(tempE[j + 1], 2)
     marks[i] = tempE
 
+#2. Посчитаем суммы оценок
 numbers = [item for sublist in prComb for item in sublist]
 sumByCol = [sum(x) for x in zip(*marks)]
 marksByNumber = list(zip(numbers, sumByCol))
@@ -28,10 +29,12 @@ sums = []
 for i, g in itertools.groupby(sorted(marksByNumber), key=lambda x: x[0]):
     sums.append((i, sum(v[1] for v in g)))
 
+#3. Посчитаем их веса
 sumAll = sum(v[1] for v in sums)
 weights = [(v[0], v[1] / sumAll) for v in sums]
 weights.sort(key=lambda x: x[1], reverse=True)
 
+#4. Выведем на экран
 # переменные
 table_width = cols * 7
 # форматы
